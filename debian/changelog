@@ -1,0 +1,6 @@
+pyenv (1.2.15-1) UNRELEASED; urgency=low
+
+  * Initial release. Closes: #nnnn
+    <nnnn is the bug number of your ITP>
+
+ -- Russell Pagden <irra@rpagden.com>  Fri, 08 Nov 2019 12:08:27 +0000
