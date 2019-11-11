@@ -1,0 +1,103 @@
+From: Russell Pagden <irra@rpagden.com>
+Date: Mon, 11 Nov 2019 17:21:06 +0000
+Subject: Add manpage
+
+Added simple manpage to base directory
+---
+ man/pyenv.1 | 87 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 87 insertions(+)
+ create mode 100644 man/pyenv.1
+
+diff --git a/man/pyenv.1 b/man/pyenv.1
+new file mode 100644
+index 0000000..be31882
+--- /dev/null
++++ b/man/pyenv.1
+@@ -0,0 +1,87 @@
++.TH PYENV 1 2019-11-06 "https://github.com/pyenv/pyenv" "Pyenv Reference Guide"
++.SH NAME
++pyenv
++\- a Python version manager
++.SH SYNOPSIS
++\.B pyenv <command> [OPTION]
++.SH DESCRIPTION
++pyenv is a Python version manager, like what nvm is for Node.js. It is able to build, install, uninstall, and otherwise manage versions of Python on top what is already available in the distro's package manager. This includes distros like PyPy and Anaconda alongside the canonical CPython.
++
++pyenv does this via intercepting commands given to Python via the system PATH, at either a global, local (per-directory), or per-shell level. It is as unintrusive as possible at any of those levels, as any Python selection can be easily reverted.
++
++Any binaries installed in any Python version will not be intercepted - i.e. the commands will fall through to the system installed Python - unless pyenv rehash is run; this regenerates the list of known binaries to pyenv - a.k.a. shims - so they can be caught properly.
++.SH OPTIONS/COMMANDS
++.TP
++\.B pyenv install <version>
++installs the given version of Python if available
++.PP
++.TP
++\.B pyenv uninstall <version>
++uninstalls the given version of Python if present
++.PP
++.TP
++\.B pyenv shell <version>
++sets the active version of Python for this shell to the given version
++
++NB: This is superseded by manual environment manipulation
++.PP
++.TP
++\.B pyenv local <version>
++sets the active version of Python for this directory - and all sub-directories without their own local version - to the given version; this is done by writing a .python-version file to this directory.
++
++NB: This is superseded by pyenv shell
++.PP
++.TP
++\.B pyenv global <version>
++sets the active version of Python across the entire OS; achieved by writing the python version to $PYENV_DIR/python-version
++
++NB: This is superseded by pyenv local
++.PP
++.TP
++\.B pyenv rehash
++sets up shims (run after every package install/uninstall if you don't know what it does)
++.PP
++.TP
++\.B pyenv versions
++list all installed versions and show the currently active version
++.PP
++.TP
++\.B pyenv commands
++list all commands
++.PP
++.SH ENVIRONMENT
++.TP
++\.B PYENV_VERSION
++specifies the Python version to be used; set via pyenv shell
++.TP
++\.B PYENV_ROOT
++directory where Python versions and shims reside; this should always be /usr/share/pyenv
++.TP
++\.B PYENV_DIR
++directory to start searching for .python-version files; defaults to current directory
++.PP
++.SH NOTES
++The package maintainer recommends using the tool pipenv - https://pipenv.readthedocs.io/en/latest/ - to manage virtualenvs in a similarly painless way as pyenv manages Python installs.
++.SH BUGS
++None known at present.
++.SH EXAMPLE
++.TP
++\.B pyenv install 3.7.5
++install CPython 3.7.5
++.PP
++.TP
++\.B pyenv uninstall pypy3.6-7.2.0
++uninstalls PyPy3.6 v7.2.0
++.PP
++.TP
++\.B pyenv global 3.6.8
++sets the default Python version across the entire OS to be CPython 3.6.8
++.PP
++.TP
++\.B pyenv shell 2.7.15
++sets Python version for this shell to be CPython 2.7.15
++.PP
++.SH SEE ALSO
++python(1), python3(1)
++
++The full source code, command reference, and list of environment variables can be found at https://github.com/pyenv/pyenv. As this man page deliberately leaves out some details on how pyenv works for the sake of brevity, it is recommended that you look here first to try and solve any issue you may have.

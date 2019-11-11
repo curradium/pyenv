@@ -2,3 +2,4 @@
 0002-Skip-shell-detection-tests.patch
 0003-Fix-test-flags-for-build-and-ext.patch
 0004-Fix-nonexistent-version-test.patch
+0005-Add-manpage.patch
