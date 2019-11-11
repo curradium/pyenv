@@ -1,0 +1,179 @@
+From: Russell Pagden <irra@rpagden.com>
+Date: Mon, 11 Nov 2019 16:59:11 +0000
+Subject: Fix test flags for build and ext
+
+Fixed various missing flags in expected test results (i.e. text fixes). All fixes are the same
+---
+ plugins/python-build/test/build.bats     | 30 +++++++++++++++---------------
+ plugins/python-build/test/pyenv_ext.bats |  8 ++++----
+ 2 files changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/plugins/python-build/test/build.bats b/plugins/python-build/test/build.bats
+index ec80968..a0505ce 100644
+--- a/plugins/python-build/test/build.bats
++++ b/plugins/python-build/test/build.bats
+@@ -77,11 +77,11 @@ assert_build_log() {
+   unstub make
+ 
+   assert_build_log <<OUT
+-yaml-0.1.6: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++yaml-0.1.6: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ yaml-0.1.6: --prefix=$INSTALL_ROOT
+ make -j 2
+ make install
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -109,12 +109,12 @@ OUT
+   unstub patch
+ 
+   assert_build_log <<OUT
+-yaml-0.1.6: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++yaml-0.1.6: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ yaml-0.1.6: --prefix=$INSTALL_ROOT
+ make -j 2
+ make install
+ patch -p0 --force -i $TMP/python-patch.XXX
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -142,12 +142,12 @@ OUT
+   unstub patch
+ 
+   assert_build_log <<OUT
+-yaml-0.1.6: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++yaml-0.1.6: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ yaml-0.1.6: --prefix=$INSTALL_ROOT
+ make -j 2
+ make install
+ patch -p1 --force -i $TMP/python-patch.XXX
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -176,7 +176,7 @@ OUT
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I$brew_libdir/include -I${TMP}/install/include " LDFLAGS="-L$brew_libdir/lib -L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I$brew_libdir/include -I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L$brew_libdir/lib -L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -204,7 +204,7 @@ DEF
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I$readline_libdir/include -I${TMP}/install/include " LDFLAGS="-L$readline_libdir/lib -L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I$readline_libdir/include -I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L$readline_libdir/lib -L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -235,7 +235,7 @@ DEF
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT CPPFLAGS=-I$readline_libdir/include LDFLAGS=-L$readline_libdir/lib --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -266,7 +266,7 @@ DEF
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -298,7 +298,7 @@ DEF
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 4
+ make install
+@@ -326,7 +326,7 @@ DEF
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 1
+ make install
+@@ -352,7 +352,7 @@ DEF
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install DOGE="such wow"
+@@ -378,7 +378,7 @@ DEF
+   unstub make
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install DOGE="such wow"
+@@ -473,7 +473,7 @@ DEF
+ 
+   assert_build_log <<OUT
+ apply -p1 -i /my/patch.diff
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+diff --git a/plugins/python-build/test/pyenv_ext.bats b/plugins/python-build/test/pyenv_ext.bats
+index 5f6d503..06111fd 100644
+--- a/plugins/python-build/test/pyenv_ext.bats
++++ b/plugins/python-build/test/pyenv_ext.bats
+@@ -123,7 +123,7 @@ run_inline_definition_with_name() {
+ 
+   assert_build_log <<OUT
+ patch -p0 --force -i $TMP/python-patch.XXX
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -155,7 +155,7 @@ OUT
+ patch: bar
+ patch: baz
+ patch: foo
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install
+@@ -181,7 +181,7 @@ OUT
+   assert_success
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make altinstall
+@@ -304,7 +304,7 @@ EOS
+   assert_success
+ 
+   assert_build_log <<OUT
+-Python-3.6.2: CPPFLAGS="-I${TMP}/install/include " LDFLAGS="-L${TMP}/install/lib "
++Python-3.6.2: CPPFLAGS="-I${TMP}/install/include -Wdate-time -D_FORTIFY_SOURCE=2" LDFLAGS="-L${TMP}/install/lib -Wl,-z,relro"
+ Python-3.6.2: --prefix=$INSTALL_ROOT --enable-unicode=ucs2 --libdir=$INSTALL_ROOT/lib
+ make -j 2
+ make install

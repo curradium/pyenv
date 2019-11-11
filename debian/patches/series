@@ -1,1 +1,4 @@
-# You must remove unused comment lines for the released package.
+0001-Use-system-bats.patch
+0002-Skip-shell-detection-tests.patch
+0003-Fix-test-flags-for-build-and-ext.patch
+0004-Fix-nonexistent-version-test.patch

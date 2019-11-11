@@ -1,0 +1,24 @@
+From: Russell Pagden <irra@rpagden.com>
+Date: Mon, 11 Nov 2019 17:01:20 +0000
+Subject: Fix nonexistent version test
+
+Minor text fix to nonexistent version tests
+---
+ plugins/python-build/test/pyenv.bats | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/plugins/python-build/test/pyenv.bats b/plugins/python-build/test/pyenv.bats
+index 8ed6320..9849b9d 100644
+--- a/plugins/python-build/test/pyenv.bats
++++ b/plugins/python-build/test/pyenv.bats
+@@ -67,9 +67,7 @@ The following versions contain \`2.7.9' in the name:
+ 
+ See all available versions with \`pyenv install --list'.
+ 
+-If the version you need is missing, try upgrading pyenv:
+-
+-  cd ${BATS_TEST_DIRNAME}/../../.. && git pull && cd -
++If the version you need is missing, try upgrading pyenv.
+ OUT
+ 
+   unstub python-build
