@@ -1,0 +1,27 @@
+From: Russell Pagden <irra@rpagden.com>
+Date: Tue, 12 Nov 2019 18:14:36 +0000
+Subject: Add CMake
+
+Add CMakeLists.txt to install project
+---
+ CMakeLists.txt | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 CMakeLists.txt
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..4d9f97b
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,11 @@
++cmake_minimum_required(VERSION 3.10.2)
++project(pyenv NONE)
++
++install(DIRECTORY
++    completions
++    libexec
++    plugins
++    pyenv.d
++    DESTINATION share/pyenv
++    USE_SOURCE_PERMISSIONS
++)

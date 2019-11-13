@@ -3,3 +3,4 @@
 0003-Fix-test-flags-for-build-and-ext.patch
 0004-Fix-nonexistent-version-test.patch
 0005-Add-manpage.patch
+0006-Add-CMake.patch
