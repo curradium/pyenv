@@ -1,0 +1,36 @@
+From: Russell Pagden <irra@rpagden.com>
+Date: Wed, 13 Nov 2019 20:38:11 +0000
+Subject: Changed default root directory to /usr/share/pyenv;
+ fixed a test case to match
+
+---
+ libexec/pyenv   | 2 +-
+ test/pyenv.bats | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libexec/pyenv b/libexec/pyenv
+index 4147d78..026365e 100755
+--- a/libexec/pyenv
++++ b/libexec/pyenv
+@@ -55,7 +55,7 @@ else
+ fi
+ 
+ if [ -z "${PYENV_ROOT}" ]; then
+-  PYENV_ROOT="${HOME}/.pyenv"
++  PYENV_ROOT="/usr/share/pyenv"
+ else
+   PYENV_ROOT="${PYENV_ROOT%/}"
+ fi
+diff --git a/test/pyenv.bats b/test/pyenv.bats
+index d161072..e5ab512 100644
+--- a/test/pyenv.bats
++++ b/test/pyenv.bats
+@@ -17,7 +17,7 @@ load test_helper
+ @test "default PYENV_ROOT" {
+   PYENV_ROOT="" HOME=/home/mislav run pyenv root
+   assert_success
+-  assert_output "/home/mislav/.pyenv"
++  assert_output "/usr/share/pyenv"
+ }
+ 
+ @test "inherited PYENV_ROOT" {

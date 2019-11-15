@@ -1,0 +1,18 @@
+From: Russell Pagden <irra@rpagden.com>
+Date: Fri, 15 Nov 2019 17:53:42 +0000
+Subject: Excluded python-build tests from install
+
+---
+ CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4d9f97b..7a800e9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -8,4 +8,5 @@ install(DIRECTORY
+     pyenv.d
+     DESTINATION share/pyenv
+     USE_SOURCE_PERMISSIONS
++    PATTERN "test" EXCLUDE
+ )
