@@ -1,9 +1,16 @@
 pyenv for Debian
 
-Th Debian package for pyenv is mostly identical to upstream; the important directories are installed to /usr/share/pyenv, and the main executable is symlinked to from libexec/pyenv.
+The Debian package for pyenv is mostly identical to upstream; the
+important directories are installed to /usr/share/pyenv, and the main
+executable is symlinked to from libexec/pyenv.
 
-The tests (only present in the build process) have been sensibly modified to either pass or skip them, and the Makefile has proper install targets, etc added too.
+The tests (only present in the build process) have been sensibly modified to
+either pass or skip them, and install targets have been added via CMake too.
 
-Additional post-inst/post-rm scripts have been written to provide (and remove) suitable shell integrations, much like a typical user install that upstream recommends.
+Additional {pre,post}{inst,rm} scripts have been written to provide (and remove) suitable shell
+integrations, much like a typical user install that upstream recommends.
+
+NB: This package provides no fix for upstream issue
+<https://github.com/pyenv/pyenv/issues/945>.
 
  -- Russell Pagden <irra@rpagden.com>  Fri, 08 Nov 2019 12:08:27 +0000
