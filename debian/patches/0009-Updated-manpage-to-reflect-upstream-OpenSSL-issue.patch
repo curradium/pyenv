@@ -1,0 +1,21 @@
+From: Russell Pagden <irra@rpagden.com>
+Date: Wed, 20 Nov 2019 20:05:11 +0000
+Subject: Updated manpage to reflect upstream OpenSSL issue
+
+---
+ man/pyenv.1 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/man/pyenv.1 b/man/pyenv.1
+index be31882..c28c7ec 100644
+--- a/man/pyenv.1
++++ b/man/pyenv.1
+@@ -63,7 +63,7 @@ directory to start searching for .python-version files; defaults to current dire
+ .SH NOTES
+ The package maintainer recommends using the tool pipenv - https://pipenv.readthedocs.io/en/latest/ - to manage virtualenvs in a similarly painless way as pyenv manages Python installs.
+ .SH BUGS
+-None known at present.
++See upstream issue <https://github.com/pyenv/pyenv/issues/945>. 
+ .SH EXAMPLE
+ .TP
+ \.B pyenv install 3.7.5
