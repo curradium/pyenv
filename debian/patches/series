@@ -6,3 +6,4 @@
 0006-Add-CMake.patch
 0007-Changed-default-root-directory-to-usr-share-pyenv-fi.patch
 0008-Excluded-python-build-tests-from-install.patch
+0009-Updated-manpage.patch
