@@ -9,7 +9,7 @@ Homepage: https://github.com/pyenv/pyenv
 Package: pyenv
 Architecture: any
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${shlibs:Depends}, wget|curl, openssl, ca-certificates, libbz2-dev, libreadline-dev, libssl-dev, zlib1g-dev, libsqlite3-dev
+Depends: ${misc:Depends}, ${shlibs:Depends}, wget|curl, openssl, ca-certificates, libssl-dev, zlib1g-dev, libbz2-dev, libreadline-dev, libsqlite3-dev, wget|curl, llvm, libncurses5-dev, xz-utils, tk-dev, libxml2-dev, libxmlsec1-dev, libffi-dev, liblzma-dev
 Description: Python version manager
  pyenv is a Python version manager, like what nvm is for Node.js. It is able
  to build, install, uninstall, and otherwise manage versions of Python on top
