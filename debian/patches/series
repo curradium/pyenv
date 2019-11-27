@@ -7,3 +7,4 @@
 0007-Changed-default-root-directory-to-usr-share-pyenv-fi.patch
 0008-Excluded-python-build-tests-from-install.patch
 0009-Updated-manpage-to-reflect-upstream-OpenSSL-issue.patch
+0010-Removed-extraneous-files.patch
